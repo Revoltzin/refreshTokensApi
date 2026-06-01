@@ -1,6 +1,6 @@
 ## Refresh Tokens API
 
-API em Node.js e TypeScript para estudo de autenticação com refresh tokens.
+API em Node.js, TypeScript, Fastify e Prisma para estudo de autenticação com refresh tokens.
 
 ### Estrutura inicial
 
