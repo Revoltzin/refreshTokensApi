@@ -1,21 +1,26 @@
-import fastify from "fastify";
-import fastifyJwt from "@fastify/jwt";
+import Fastify from "fastify";
+import FastifyJwt from "@fastify/jwt";
 
 import { env } from "./config/env";
-import { appRoutes } from "./routes";
+import { privateRoutes, publicRoutes } from "./routes";
 
-const app = fastify();
+const fastify = Fastify();
 
-app.register(fastifyJwt, {
-  secret: env.jwtAccessSecret
+fastify.register(FastifyJwt, {
+  secret: env.jwtAccessSecret,
+  sign: {
+    expiresIn: '2d',
+  }
 });
 
-app.register(appRoutes);
+fastify.register(publicRoutes)
+fastify.register(privateRoutes)
 
-app
+
+fastify
   .listen({
-    port: env.port,
-    host: "0.0.0.0"
+    port: 3000,
+    host: "localhost"
   })
   .then(() => {
     console.log(`Server running on port ${env.port}`);
