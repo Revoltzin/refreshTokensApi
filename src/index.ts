@@ -19,7 +19,7 @@ fastify.register(privateRoutes)
 
 fastify
   .listen({
-    port: 3000,
+    port: env.port,
     host: "localhost"
   })
   .then(() => {

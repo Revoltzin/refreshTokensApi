@@ -3,7 +3,6 @@ import { FastifyReply, FastifyRequest } from 'fastify'
 import { z } from 'zod'
 
 import { AccountsRepository } from '../repositories/AccountsRepository'
-import { request } from 'http'
 
 export class SignInController {
   static schema = z.object({
@@ -38,10 +37,10 @@ export class SignInController {
         .send({ errors: 'Invalid Credentials' })
     }
 
-    const acessToken = await reply.jwtSign({ sub: account.id })
+    const accessToken = await reply.jwtSign({ sub: account.id })
 
     return reply
       .code(200)
-      .send({ acessToken })
+      .send({ accessToken })
   }
 }
